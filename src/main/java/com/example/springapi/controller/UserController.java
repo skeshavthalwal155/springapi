@@ -17,10 +17,6 @@ import java.util.Set;
 import com.example.springapi.dtos.RegisterUserRequest;
 import com.example.springapi.dtos.UpdateUserRequest;
 
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
-
 @RestController
 @AllArgsConstructor
 @RequestMapping("/users")
@@ -73,5 +69,15 @@ public class UserController {
         userRepository.save(user);
 
         return ResponseEntity.ok(userMapper.toDto(user));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable(name = "id") Long id) {
+        var user = userRepository.findById(id).orElse(null);
+        if (user == null)
+            return ResponseEntity.notFound().build();
+
+        userRepository.delete(user);
+        return ResponseEntity.noContent().build();
     }
 }
