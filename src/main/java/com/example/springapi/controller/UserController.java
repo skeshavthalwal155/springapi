@@ -1,10 +1,9 @@
 package com.example.springapi.controller;
 
 import com.example.springapi.dtos.UserDto;
-import com.example.springapi.entities.User;
+import com.example.springapi.mappers.UserMapper;
 import com.example.springapi.repositories.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,12 +18,12 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     @GetMapping
     public List<UserDto> getAllUsers() {
         return userRepository.findAll()
-                .stream()
-                .map(user -> new UserDto(user.getId(), user.getName(), user.getEmail()))
+                .stream().map(userMapper::toDto)
                 .toList();
     }
 
@@ -34,7 +33,6 @@ public class UserController {
         if (user == null){
             return ResponseEntity.notFound().build();
         }
-        var userDto = new UserDto(user.getId(), user.getName(), user.getEmail());
-        return ResponseEntity.ok(userDto);
+        return ResponseEntity.ok(userMapper.toDto(user));
     }
 }
