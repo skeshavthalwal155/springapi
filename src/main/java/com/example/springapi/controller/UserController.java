@@ -3,14 +3,18 @@ package com.example.springapi.controller;
 import com.example.springapi.dtos.UserDto;
 import com.example.springapi.mappers.UserMapper;
 import com.example.springapi.repositories.UserRepository;
+
 import lombok.AllArgsConstructor;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 import java.util.Set;
 
+import com.example.springapi.dtos.RegisterUserRequest;
 
 @RestController
 @AllArgsConstructor
@@ -21,9 +25,8 @@ public class UserController {
 
     @GetMapping
     public List<UserDto> getAllUsers(
-            @RequestParam(required = false, defaultValue = "", name = "name") String sort
-    ) {
-        if(!Set.of("name","email").contains(sort))
+            @RequestParam(required = false, defaultValue = "", name = "name") String sort) {
+        if (!Set.of("name", "email").contains(sort))
             sort = "name";
 
         return userRepository.findAll(Sort.by(sort))
@@ -32,11 +35,23 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDto> getUser(@PathVariable Long id){
-        var user =  userRepository.findById(id).orElse(null);
-        if (user == null){
+    public ResponseEntity<UserDto> getUser(@PathVariable Long id) {
+        var user = userRepository.findById(id).orElse(null);
+        if (user == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(userMapper.toDto(user));
+    }
+
+    @PostMapping
+    public ResponseEntity<UserDto> createUser(@RequestBody RegisterUserRequest request,
+            UriComponentsBuilder uriBuilder) {
+
+        var user = userMapper.toEntity(request);
+        userRepository.save(user);
+
+        var userDto = userMapper.toDto(user);
+        var uri = uriBuilder.path("/users/{id}").buildAndExpand(userDto.getId()).toUri();
+        return ResponseEntity.created(uri).body(userDto);
     }
 }
