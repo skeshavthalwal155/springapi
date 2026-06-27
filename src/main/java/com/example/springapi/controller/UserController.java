@@ -15,6 +15,11 @@ import java.util.List;
 import java.util.Set;
 
 import com.example.springapi.dtos.RegisterUserRequest;
+import com.example.springapi.dtos.UpdateUserRequest;
+
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @AllArgsConstructor
@@ -53,5 +58,20 @@ public class UserController {
         var userDto = userMapper.toDto(user);
         var uri = uriBuilder.path("/users/{id}").buildAndExpand(userDto.getId()).toUri();
         return ResponseEntity.created(uri).body(userDto);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDto> updateUser(
+            @PathVariable(name = "id") Long id,
+            @RequestBody UpdateUserRequest request) {
+
+        var user = userRepository.findById(id).orElse(null);
+        if (user == null)
+            return ResponseEntity.notFound().build();
+
+        userMapper.update(request, user);
+        userRepository.save(user);
+
+        return ResponseEntity.ok(userMapper.toDto(user));
     }
 }
