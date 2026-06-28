@@ -51,10 +51,14 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDto> createUser(
+    public ResponseEntity<?> createUser(
             @Valid @RequestBody RegisterUserRequest request,
             UriComponentsBuilder uriBuilder) {
-
+        if(userRepository.existsByEmail(request.getEmail())){
+            return ResponseEntity.badRequest().body(
+                    Map.of("email", "Email is already registered.")
+            );
+        }
         var user = userMapper.toEntity(request);
         userRepository.save(user);
 
@@ -92,6 +96,7 @@ public class UserController {
     public ResponseEntity<Void> changePassword(
             @PathVariable(name = "id") Long id,
             @RequestBody ChangePasswordRequest request) {
+
         var user = userRepository.findById(id).orElse(null);
         if (user == null)
             return ResponseEntity.notFound().build();
@@ -105,13 +110,5 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, String>> handleValidationErrors(
-            MethodArgumentNotValidException exception
-    ){
-        var errors = new HashMap<String, String>();
-        exception.getBindingResult().getFieldErrors().forEach(error -> errors.put(error.getField(), error.getDefaultMessage()));
 
-        return ResponseEntity.badRequest().body(errors);
-    }
 }
