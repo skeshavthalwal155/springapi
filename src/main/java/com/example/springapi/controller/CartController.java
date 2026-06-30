@@ -26,12 +26,12 @@ public class CartController {
 
     @PostMapping
     public ResponseEntity<CartDto> createCart(
-            UriComponentsBuilder uriBuider
+            UriComponentsBuilder uriBuilder
        ){
             var cart = new Cart();
             cartRepository.save(cart);
             var cartDto = cartMapper.toDto(cart);
-            var uri = uriBuider.path("/carts/{id}").buildAndExpand(cartDto.getId()).toUri();
+            var uri = uriBuilder.path("/carts/{id}").buildAndExpand(cartDto.getId()).toUri();
             return ResponseEntity.created(uri).body(cartDto);
        }
        @PostMapping("/{cartId}/items")
@@ -47,20 +47,7 @@ public class CartController {
             if(product == null){
                 return ResponseEntity.badRequest().build();
             }
-
-            var cartItem = cart.getItems().stream()
-                    .filter(item->item.getProduct().getId().equals(product.getId()))
-                    .findFirst()
-                    .orElse(null);
-            if(cartItem != null){
-                cartItem.setQuantity(cartItem.getQuantity() + 1);
-            }else{
-                cartItem = new CartItem();
-                cartItem.setProduct(product);
-                cartItem.setQuantity(1);
-                cartItem.setCart(cart);
-                cart.getItems().add(cartItem);
-            }
+            var cartItem = cart.addItem(product);
 
             cartRepository.save(cart);
             var cartItemDto = cartMapper.toDto(cartItem);
@@ -72,7 +59,6 @@ public class CartController {
             if(cart == null){
                 return ResponseEntity.notFound().build();
             }
-
             return ResponseEntity.ok(cartMapper.toDto(cart));
        }
        @PutMapping("/{cartId}/items/{productId}")
@@ -87,10 +73,7 @@ public class CartController {
                         Map.of("error", "Cart not found.")
                 );
             }
-           var cartItem = cart.getItems().stream()
-                   .filter(item->item.getProduct().getId().equals(productId))
-                   .findFirst()
-                   .orElse(null);
+           var cartItem = cart.getItem(productId);
             if(cartItem == null){
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
                         Map.of("error", "Product was not found in the cart.")
@@ -100,5 +83,20 @@ public class CartController {
             cartRepository.save(cart);
 
             return ResponseEntity.ok(cartMapper.toDto(cartItem));
+       }
+       @DeleteMapping("/{cartId}/items/{productId}")
+       public ResponseEntity<?> removeItem(
+               @PathVariable("cartId") UUID cartId,
+               @PathVariable("productId") Long productId
+       ){
+        var cart = cartRepository.getCartWithItems(cartId).orElse(null);
+        if(cart == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    Map.of("error","Cart was not found")
+            );
+        }
+        cart.removeItem(productId);
+        cartRepository.save(cart);
+        return ResponseEntity.noContent().build();
        }
 }
