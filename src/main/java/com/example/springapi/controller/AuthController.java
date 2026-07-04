@@ -27,7 +27,6 @@ public class AuthController {
                        request.getEmail(), request.getPassword()
                )
        );
-
        var token = jwtService.generateToken(request.getEmail());
        return ResponseEntity.ok(new JwtResponse(token));
     }
