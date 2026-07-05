@@ -1,5 +1,6 @@
 package com.example.springapi.services;
 
+import com.example.springapi.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
@@ -11,20 +12,34 @@ import java.util.Date;
 
 @Service
 public class JwtService {
-    @Value("${spring.jwt.secret}")
+    @Value("${jwt.secret}")
     private String secret;
 
-    public String generateToken(String email){
-        final long tokenExpiration = 86400; // 1 Day
+    public String generateAccessToken(User user){
+        final long tokenExpiration = 300; // 5m
         Date issuedAt = new Date();
         Date expiredAt = new Date(System.currentTimeMillis() + 1000 * tokenExpiration);
+        return generateToken(user, issuedAt, expiredAt);
+    }
+
+    public String generateRefreshToken(User user){
+        final long tokenExpiration = 604800; // 7d
+        Date issuedAt = new Date();
+        Date expiredAt = new Date(System.currentTimeMillis() + 1000 * tokenExpiration);
+        return generateToken(user, issuedAt, expiredAt);
+    }
+
+    private String generateToken(User user, Date issuedAt, Date expiredAt) {
         return Jwts.builder()
-                .subject(email)
+                .subject(user.getId().toString())
+                .claim("email", user.getEmail())
+                .claim("name", user.getName())
                 .issuedAt(issuedAt)
                 .expiration(expiredAt)
                 .signWith(Keys.hmacShaKeyFor(secret.getBytes()))
                 .compact();
     }
+
     public boolean validateToken(String token){
        try{
            var claims = getClaims(token);
@@ -43,7 +58,7 @@ public class JwtService {
 
     }
 
-    public String getEmailFromToken(String token){
-        return getClaims(token).getSubject();
+    public Long getUserIdFromToken(String token){
+        return Long.valueOf(getClaims(token).getSubject());
     }
 }
