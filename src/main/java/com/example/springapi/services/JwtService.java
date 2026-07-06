@@ -1,6 +1,7 @@
 package com.example.springapi.services;
 
 import com.example.springapi.config.JwtConfig;
+import com.example.springapi.entities.Role;
 import com.example.springapi.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
@@ -55,5 +56,8 @@ public class JwtService {
 
     public Long getUserIdFromToken(String token){
         return Long.valueOf(getClaims(token).getSubject());
+    }
+    public Role getRoleFromToken(String token){
+        return Role.valueOf(getClaims(token).get("role", String.class));
     }
 }
