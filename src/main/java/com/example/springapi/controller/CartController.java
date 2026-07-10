@@ -1,9 +1,6 @@
 package com.example.springapi.controller;
 
-import com.example.springapi.dtos.AddItemToCartRequest;
-import com.example.springapi.dtos.CartDto;
-import com.example.springapi.dtos.CartItemDto;
-import com.example.springapi.dtos.UpdateCartItemRequest;
+import com.example.springapi.dtos.*;
 import com.example.springapi.exceptions.CartNotFoundException;
 import com.example.springapi.exceptions.ProductNotFoundException;
 import com.example.springapi.services.CartService;
@@ -17,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -55,8 +51,8 @@ public class CartController {
 
        @PutMapping("/{cartId}/items/{productId}")
        public CartItemDto updateItem(
-               @PathVariable("cartId") UUID cartId,
-               @PathVariable("productId") Long productId,
+               @PathVariable UUID cartId,
+               @PathVariable Long productId,
                @Valid @RequestBody UpdateCartItemRequest request
        ){
            return cartService.updateItem(cartId, productId, request.getQuantity());
@@ -64,8 +60,8 @@ public class CartController {
 
        @DeleteMapping("/{cartId}/items/{productId}")
        public ResponseEntity<?> removeItem(
-               @PathVariable("cartId") UUID cartId,
-               @PathVariable("productId") Long productId
+               @PathVariable UUID cartId,
+               @PathVariable Long productId
        ){
         cartService.removeItem(cartId, productId);
         return ResponseEntity.noContent().build();
@@ -77,15 +73,15 @@ public class CartController {
        }
 
        @ExceptionHandler(CartNotFoundException.class)
-       public ResponseEntity<Map<String, String>> handleCartNotFound(){
+       public ResponseEntity<ErrorDto> handleCartNotFound() {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                    Map.of("error", "Cart not found.")
+                    new ErrorDto("Cart not found")
             );
        }
        @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<Map<String, String>> handleProductNotFound(){
+       public ResponseEntity<ErrorDto> handleProductNotFound() {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                Map.of("error", "Product was not found in the cart.")
+                new ErrorDto("Product not found")
         );
        }
 }
