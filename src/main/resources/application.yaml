@@ -17,3 +17,6 @@ jwt:
 logging:
   level:
     org.springframework.boot.devtools: DEBUG
+
+stripe:
+  secretKey:${STRIPE_SECRET_KEY}
