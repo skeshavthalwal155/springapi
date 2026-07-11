@@ -17,6 +17,7 @@ jwt:
 logging:
   level:
     org.springframework.boot.devtools: DEBUG
-
 stripe:
-  secretKey:${STRIPE_SECRET_KEY}
+  secretKey: ${STRIPE_SECRET_KEY}
+
+websiteUrl: http://localhost:4242
