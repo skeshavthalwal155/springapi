@@ -1,4 +1,4 @@
-package com.example.springapi.entities;
+package com.example.springapi.orders;
 
 import com.example.springapi.products.Product;
 import jakarta.persistence.*;

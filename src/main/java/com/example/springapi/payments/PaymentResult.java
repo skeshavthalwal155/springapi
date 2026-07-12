@@ -1,6 +1,5 @@
 package com.example.springapi.payments;
 
-import com.example.springapi.entities.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

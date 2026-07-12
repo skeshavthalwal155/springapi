@@ -1,8 +1,7 @@
 package com.example.springapi.payments;
 
-import com.example.springapi.entities.Order;
-import com.example.springapi.entities.OrderItem;
-import com.example.springapi.entities.PaymentStatus;
+import com.example.springapi.orders.Order;
+import com.example.springapi.orders.OrderItem;
 import com.stripe.exception.SignatureVerificationException;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Event;

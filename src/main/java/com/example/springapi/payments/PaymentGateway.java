@@ -1,6 +1,6 @@
 package com.example.springapi.payments;
 
-import com.example.springapi.entities.Order;
+import com.example.springapi.orders.Order;
 
 import java.util.Optional;
 

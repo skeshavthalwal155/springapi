@@ -1,6 +1,6 @@
 package com.example.springapi.carts;
 
-import com.example.springapi.dtos.ErrorDto;
+import com.example.springapi.common.ErrorDto;
 import com.example.springapi.products.ProductNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

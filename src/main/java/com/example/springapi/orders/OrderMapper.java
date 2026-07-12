@@ -1,7 +1,5 @@
-package com.example.springapi.mappers;
+package com.example.springapi.orders;
 
-import com.example.springapi.dtos.OrderDto;
-import com.example.springapi.entities.Order;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

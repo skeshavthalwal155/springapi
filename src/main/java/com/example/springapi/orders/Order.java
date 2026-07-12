@@ -1,6 +1,7 @@
-package com.example.springapi.entities;
+package com.example.springapi.orders;
 
 import com.example.springapi.carts.Cart;
+import com.example.springapi.payments.PaymentStatus;
 import com.example.springapi.users.User;
 import jakarta.persistence.*;
 import lombok.Getter;

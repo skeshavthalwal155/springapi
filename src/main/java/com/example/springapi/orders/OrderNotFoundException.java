@@ -1,4 +1,4 @@
-package com.example.springapi.exceptions;
+package com.example.springapi.orders;
 
 public class OrderNotFoundException extends RuntimeException {
     public OrderNotFoundException() {

@@ -1,4 +1,4 @@
-package com.example.springapi.dtos;
+package com.example.springapi.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

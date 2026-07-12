@@ -2,7 +2,7 @@ package com.example.springapi.payments;
 
 import com.example.springapi.carts.CartEmptyException;
 import com.example.springapi.carts.CartNotFoundException;
-import com.example.springapi.dtos.ErrorDto;
+import com.example.springapi.common.ErrorDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
