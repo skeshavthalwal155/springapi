@@ -1,6 +1,5 @@
-package com.example.springapi.services;
+package com.example.springapi.users;
 
-import com.example.springapi.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

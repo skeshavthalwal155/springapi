@@ -1,5 +1,6 @@
-package com.example.springapi.entities;
+package com.example.springapi.users;
 
+import com.example.springapi.entities.Product;
 import jakarta.persistence.*;
 import lombok.*;
 

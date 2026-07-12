@@ -1,6 +1,5 @@
-package com.example.springapi.dtos;
+package com.example.springapi.users;
 
-import com.example.springapi.validation.Lowercase;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

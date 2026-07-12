@@ -1,4 +1,4 @@
-package com.example.springapi.validation;
+package com.example.springapi.users;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

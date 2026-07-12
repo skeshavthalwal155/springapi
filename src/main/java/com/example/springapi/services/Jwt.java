@@ -1,6 +1,6 @@
 package com.example.springapi.services;
 
-import com.example.springapi.entities.Role;
+import com.example.springapi.users.Role;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 

@@ -1,7 +1,7 @@
 package com.example.springapi.services;
 
 import com.example.springapi.config.JwtConfig;
-import com.example.springapi.entities.User;
+import com.example.springapi.users.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;

@@ -1,7 +1,7 @@
 package com.example.springapi.services;
 
-import com.example.springapi.entities.User;
-import com.example.springapi.repositories.UserRepository;
+import com.example.springapi.users.User;
+import com.example.springapi.users.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;

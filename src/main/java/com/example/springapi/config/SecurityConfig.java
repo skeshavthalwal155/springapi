@@ -1,7 +1,7 @@
 package com.example.springapi.config;
 
-import com.example.springapi.entities.Role;
 import com.example.springapi.filters.JwtAuthenticationFilter;
+import com.example.springapi.users.Role;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -43,11 +43,11 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager(
             AuthenticationConfiguration config
-    ) throws Exception {
+    ) {
         return config.getAuthenticationManager();
     }
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) {
         http
                 .sessionManagement(c->
                         c.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

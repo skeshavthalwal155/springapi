@@ -1,6 +1,5 @@
-package com.example.springapi.repositories;
+package com.example.springapi.users;
 
-import com.example.springapi.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

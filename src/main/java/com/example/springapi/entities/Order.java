@@ -1,5 +1,6 @@
 package com.example.springapi.entities;
 
+import com.example.springapi.users.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
