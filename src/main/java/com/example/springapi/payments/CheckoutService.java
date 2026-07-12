@@ -1,13 +1,12 @@
-package com.example.springapi.services;
+package com.example.springapi.payments;
 
-import com.example.springapi.dtos.CheckoutRequest;
-import com.example.springapi.dtos.CheckoutResponse;
 import com.example.springapi.entities.Order;
 import com.example.springapi.exceptions.CartEmptyException;
 import com.example.springapi.exceptions.CartNotFoundException;
-import com.example.springapi.exceptions.PaymentException;
 import com.example.springapi.repositories.CartRepository;
 import com.example.springapi.repositories.OrderRepository;
+import com.example.springapi.services.AuthService;
+import com.example.springapi.services.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

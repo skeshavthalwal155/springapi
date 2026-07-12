@@ -1,4 +1,4 @@
-package com.example.springapi.config;
+package com.example.springapi.payments;
 
 import com.stripe.Stripe;
 import jakarta.annotation.PostConstruct;

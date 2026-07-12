@@ -1,9 +1,8 @@
-package com.example.springapi.services;
+package com.example.springapi.payments;
 
 import com.example.springapi.entities.Order;
 import com.example.springapi.entities.OrderItem;
 import com.example.springapi.entities.PaymentStatus;
-import com.example.springapi.exceptions.PaymentException;
 import com.stripe.exception.SignatureVerificationException;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Event;
@@ -50,6 +49,7 @@ public class StripePaymentGateway implements PaymentGateway {
         try {
             var payload = request.getPayload();
             var signature = request.getHeaders().get("stripe-signature");
+            System.out.println(signature);
             var event = Webhook.constructEvent(payload, signature, webhookSecretKey);
 
             return switch (event.getType()) {

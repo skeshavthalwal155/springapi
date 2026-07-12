@@ -1,13 +1,8 @@
-package com.example.springapi.controller;
+package com.example.springapi.payments;
 
-import com.example.springapi.dtos.CheckoutRequest;
-import com.example.springapi.dtos.CheckoutResponse;
 import com.example.springapi.dtos.ErrorDto;
 import com.example.springapi.exceptions.CartEmptyException;
 import com.example.springapi.exceptions.CartNotFoundException;
-import com.example.springapi.exceptions.PaymentException;
-import com.example.springapi.services.CheckoutService;
-import com.example.springapi.services.WebhookRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

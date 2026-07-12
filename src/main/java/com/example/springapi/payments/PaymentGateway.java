@@ -1,4 +1,4 @@
-package com.example.springapi.services;
+package com.example.springapi.payments;
 
 import com.example.springapi.entities.Order;
 
