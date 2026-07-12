@@ -1,6 +1,9 @@
-package com.example.springapi.dtos;
+package com.example.springapi.products;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 

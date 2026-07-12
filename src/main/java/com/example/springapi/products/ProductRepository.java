@@ -1,6 +1,5 @@
-package com.example.springapi.repositories;
+package com.example.springapi.products;
 
-import com.example.springapi.entities.Product;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

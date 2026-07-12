@@ -1,13 +1,6 @@
-package com.example.springapi.controller;
+package com.example.springapi.products;
 
-import com.example.springapi.dtos.ProductDto;
-import com.example.springapi.entities.Product;
-import com.example.springapi.mappers.ProductMapper;
-import com.example.springapi.repositories.CategoryRepository;
-import com.example.springapi.repositories.ProductRepository;
-import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;

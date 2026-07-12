@@ -1,7 +1,5 @@
-package com.example.springapi.mappers;
+package com.example.springapi.products;
 
-import com.example.springapi.dtos.ProductDto;
-import com.example.springapi.entities.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;

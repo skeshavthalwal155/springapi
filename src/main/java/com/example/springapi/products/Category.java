@@ -1,7 +1,9 @@
-package com.example.springapi.entities;
+package com.example.springapi.products;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
