@@ -1,4 +1,4 @@
-package com.example.springapi.services;
+package com.example.springapi.auth;
 
 import com.example.springapi.users.Role;
 import io.jsonwebtoken.Claims;

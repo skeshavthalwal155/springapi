@@ -1,5 +1,6 @@
 package com.example.springapi.services;
 
+import com.example.springapi.auth.AuthService;
 import com.example.springapi.dtos.OrderDto;
 import com.example.springapi.exceptions.OrderNotFoundException;
 import com.example.springapi.mappers.OrderMapper;

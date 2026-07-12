@@ -1,6 +1,5 @@
-package com.example.springapi.config;
+package com.example.springapi.auth;
 
-import com.example.springapi.filters.JwtAuthenticationFilter;
 import com.example.springapi.users.Role;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -27,7 +26,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @AllArgsConstructor
 public class SecurityConfig {
     private final UserDetailsService userDetailsService;
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final JwtService.JwtAuthenticationFilter jwtAuthenticationFilter;
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

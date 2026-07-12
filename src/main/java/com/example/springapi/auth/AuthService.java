@@ -1,4 +1,4 @@
-package com.example.springapi.services;
+package com.example.springapi.auth;
 
 import com.example.springapi.users.User;
 import com.example.springapi.users.UserRepository;

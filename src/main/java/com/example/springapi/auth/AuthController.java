@@ -1,10 +1,5 @@
-package com.example.springapi.controller;
+package com.example.springapi.auth;
 
-import com.example.springapi.config.JwtConfig;
-import com.example.springapi.dtos.JwtResponse;
-import com.example.springapi.dtos.LoginRequest;
-import com.example.springapi.services.AuthService;
-import com.example.springapi.services.JwtService;
 import com.example.springapi.users.UserDto;
 import com.example.springapi.users.UserMapper;
 import com.example.springapi.users.UserRepository;

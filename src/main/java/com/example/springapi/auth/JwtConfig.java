@@ -1,4 +1,4 @@
-package com.example.springapi.config;
+package com.example.springapi.auth;
 
 import io.jsonwebtoken.security.Keys;
 import lombok.Data;
