@@ -1,13 +1,7 @@
-package com.example.springapi.services;
+package com.example.springapi.carts;
 
-import com.example.springapi.dtos.CartDto;
-import com.example.springapi.dtos.CartItemDto;
-import com.example.springapi.entities.Cart;
-import com.example.springapi.exceptions.CartNotFoundException;
-import com.example.springapi.mappers.CartMapper;
 import com.example.springapi.products.ProductNotFoundException;
 import com.example.springapi.products.ProductRepository;
-import com.example.springapi.repositories.CartRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,5 @@
-package com.example.springapi.repositories;
+package com.example.springapi.carts;
 
-import com.example.springapi.entities.Cart;
-import jakarta.persistence.Entity;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

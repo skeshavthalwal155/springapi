@@ -1,9 +1,7 @@
-package com.example.springapi.controller;
+package com.example.springapi.carts;
 
-import com.example.springapi.dtos.*;
-import com.example.springapi.exceptions.CartNotFoundException;
+import com.example.springapi.dtos.ErrorDto;
 import com.example.springapi.products.ProductNotFoundException;
-import com.example.springapi.services.CartService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

@@ -1,9 +1,5 @@
-package com.example.springapi.mappers;
+package com.example.springapi.carts;
 
-import com.example.springapi.dtos.CartDto;
-import com.example.springapi.dtos.CartItemDto;
-import com.example.springapi.entities.Cart;
-import com.example.springapi.entities.CartItem;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

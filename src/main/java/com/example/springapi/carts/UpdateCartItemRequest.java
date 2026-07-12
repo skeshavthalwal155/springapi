@@ -1,4 +1,4 @@
-package com.example.springapi.dtos;
+package com.example.springapi.carts;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
