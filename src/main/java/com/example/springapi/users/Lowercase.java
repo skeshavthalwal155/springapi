@@ -13,6 +13,8 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = LowercaseValidator.class)
 public @interface Lowercase {
     String message() default "must be lowercase";
-    Class<?> [] groups() default {};
+
+    Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 }

@@ -13,11 +13,11 @@ import java.io.IOException;
 @Component
 @AllArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    private  final JwtService jwtService;
+    private final JwtService jwtService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        var authHeader = request.getHeader( "Authorization" );
+        var authHeader = request.getHeader("Authorization");
         JwtService.JwtAuthenticationFilter.isTokenExist(request, response, filterChain, authHeader, jwtService);
     }
 }

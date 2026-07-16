@@ -16,19 +16,19 @@ public class Jwt {
         this.secretKey = secretKey;
     }
 
-    public boolean isExpired(){
+    public boolean isExpired() {
         return claims.getExpiration().before(new Date());
     }
 
-    public Long getUserId(){
+    public Long getUserId() {
         return Long.parseLong(claims.getSubject());
     }
 
-    public Role getRole(){
+    public Role getRole() {
         return Role.valueOf(claims.get("role", String.class));
     }
 
-    public String toString(){
+    public String toString() {
         return Jwts.builder()
                 .claims(claims)
                 .signWith(secretKey)

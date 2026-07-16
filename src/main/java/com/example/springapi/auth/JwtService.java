@@ -27,42 +27,41 @@ public class JwtService {
     private final JwtConfig jwtConfig;
 
     private static String getAuthHeader(HttpServletRequest request) {
-        var authHeader = request.getHeader("Authorization");
-        return authHeader;
+        return request.getHeader("Authorization");
     }
 
-    public Jwt generateAccessToken(User user){
+    public Jwt generateAccessToken(User user) {
         return generateToken(user, jwtConfig.getAccessTokenExpiration());
     }
 
-    public Jwt generateRefreshToken(User user){
+    public Jwt generateRefreshToken(User user) {
         return generateToken(user, jwtConfig.getRefreshTokenExpiration());
     }
 
     private Jwt generateToken(User user, long tokenExpiration) {
-        var claims =  Jwts.claims()
+        var claims = Jwts.claims()
                 .subject(user.getId().toString())
-                .add("email",user.getEmail())
-                .add("name",user.getName())
-                .add("role",user.getRole())
+                .add("email", user.getEmail())
+                .add("name", user.getName())
+                .add("role", user.getRole())
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + 1000 * tokenExpiration))
                 .build();
         return new Jwt(claims, jwtConfig.getSecretKey());
     }
 
-    public Jwt parseToken(String token){
-        try{
+    public Jwt parseToken(String token) {
+        try {
             var claims = getClaims(token);
             return new Jwt(claims, jwtConfig.getSecretKey());
-        }catch(JwtException e){
+        } catch (JwtException e) {
             System.out.println("Error while parsing: " + e.getMessage());
             return null;
         }
     }
 
     private Claims getClaims(String token) {
-       return Jwts.parser()
+        return Jwts.parser()
                 .verifyWith(jwtConfig.getSecretKey())
                 .build()
                 .parseSignedClaims(token)
